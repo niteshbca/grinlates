@@ -13,7 +13,7 @@ export default function SupplierList() {
   const [actionLoading, setActionLoading] = useState(false);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/suppliers')
+    fetch('http://35.154.105.92:5000/api/suppliers')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch');
         return res.json();
@@ -44,7 +44,7 @@ export default function SupplierList() {
     if (!details[partyName]) {
       setDetailsLoading(true);
       setDetailsError(null);
-      fetch(`http://localhost:5000/api/supplier-details?partyName=${encodeURIComponent(partyName)}`)
+      fetch(`http://35.154.105.92:5000/api/supplier-details?partyName=${encodeURIComponent(partyName)}`)
         .then(res => {
           if (!res.ok) throw new Error('Failed to fetch details');
           return res.json();
@@ -72,7 +72,7 @@ export default function SupplierList() {
   const handleEditSave = async (oldPartyName) => {
     setActionLoading(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/supplier/${encodeURIComponent(oldPartyName)}`, {
+      const res = await fetch(`http://35.154.105.92:5000/api/supplier/${encodeURIComponent(oldPartyName)}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(editData)
@@ -91,7 +91,7 @@ export default function SupplierList() {
     if (!window.confirm('Are you sure you want to delete this supplier?')) return;
     setActionLoading(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/supplier/${encodeURIComponent(partyName)}`, {
+      const res = await fetch(`http://35.154.105.92:5000/api/supplier/${encodeURIComponent(partyName)}`, {
         method: 'DELETE'
       });
       if (!res.ok) throw new Error('Failed to delete');
